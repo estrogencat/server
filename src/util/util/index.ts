@@ -25,6 +25,7 @@ export * from "./Constants";
 export * from "./email";
 export * from "./ipc/Event";
 export * from "./FieldError";
+export * from "./Hypesquad";
 export * from "./Intents";
 export * from "./InvisibleCharacters";
 export * from "./JSON";

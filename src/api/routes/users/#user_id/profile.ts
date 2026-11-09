@@ -20,7 +20,7 @@ import { Request, Response, Router } from "express";
 import { In } from "typeorm";
 import { route } from "@spacebar/api/middlewares";
 import { Badge, Member, Relationship, User } from "@spacebar/database";
-import { Config, emitEvent, FieldErrors, handleFile, UserUpdateEvent } from "@spacebar/util";
+import { Config, emitEvent, FieldErrors, getHypesquadBadges, handleFile, UserUpdateEvent } from "@spacebar/util";
 import { PartialConnectedAccountResponse, PrivateUserProjection, PublicUser, PublicUserProjection, RelationshipType, UserProfileModifySchema } from "@spacebar/schemas";
 
 const router: Router = Router({ mergeParams: true });
@@ -162,7 +162,7 @@ router.get("/", route({ responses: { 200: { body: "UserProfileResponse" } } }), 
         user_profile: userProfile,
         guild_member: { ...guild_member?.toPublicMember(), user: user.toPublicUser() },
         guild_member_profile: guild_id && guildMemberProfile,
-        badges: badges.filter((x) => user.badge_ids?.includes(x.id)),
+        badges: [...getHypesquadBadges(user.public_flags), ...badges.filter((x) => user.badge_ids?.includes(x.id))],
     });
 });
 
