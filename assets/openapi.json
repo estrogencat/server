@@ -2231,6 +2231,17 @@
                     "school"
                 ]
             },
+            "HypesquadOnlineSchema": {
+                "type": "object",
+                "properties": {
+                    "house_id": {
+                        "$ref": "#/components/schemas/HypesquadHouse"
+                    }
+                },
+                "required": [
+                    "house_id"
+                ]
+            },
             "InviteCreateSchema": {
                 "type": "object",
                 "properties": {
@@ -10594,6 +10605,14 @@
                         "type": "boolean"
                     }
                 }
+            },
+            "HypesquadHouse": {
+                "type": "number",
+                "enum": [
+                    1,
+                    2,
+                    3
+                ]
             },
             "Classification": {
                 "type": "object",
@@ -23282,6 +23301,58 @@
                         "description": "interaction_token"
                     }
                 ],
+                "tags": [
+                    "api"
+                ]
+            }
+        },
+        "/api/hypesquad/online/": {
+            "post": {
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HypesquadOnlineSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "No description available"
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/APIErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "api"
+                ]
+            },
+            "delete": {
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No description available"
+                    }
+                },
                 "tags": [
                     "api"
                 ]
